@@ -14,8 +14,8 @@ attackingDifferential <- minsPlayed %>% # create new df to see top players
   group_by(player_name) %>%
   summarise(xP = xP, points = points, xp_diff = xp_diff) %>% # pick which columns to include
   filter(points >= 20) %>% # filter by players who scored more than 20 points
-  arrange(desc(xp_diff)) %>% # arrange by xp_diff
-  top_n(10) #show top 10 players
+  arrange(xp_diff) %>% # arrange by xp_diff
+  slice_min(xp_diff, n = 10) #show bottom 10 players
 
 colnames(attackingDifferential) <- c("Player", "xP", "Points", "Differential")
 
